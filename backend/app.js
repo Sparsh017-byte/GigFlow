@@ -31,7 +31,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/gigs", gigRoutes);
 app.use("/api/bids", bidRoutes);
 
-
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 app.use(errorHandler);
 
 export default app;
