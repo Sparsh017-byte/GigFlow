@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
+import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import gigRoutes from "./routes/gigRoutes.js";
 import bidRoutes from "./routes/bidRoutes.js";
@@ -14,9 +14,7 @@ dotenv.config();
 const app = express();
 
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error(err));
+connectDB();
 
 
 app.use(express.json());
