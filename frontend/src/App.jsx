@@ -12,7 +12,7 @@ import { AuthProvider } from "./context/AuthContext";
 function AppContent() {
   const location = useLocation();
 
-  // Hide navbar on auth pages
+
   const hideNavbar =
     location.pathname === "/login" ||
     location.pathname === "/register";

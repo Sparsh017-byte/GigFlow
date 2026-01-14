@@ -22,12 +22,12 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-20 bg-black border-b border-gray-800">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4">
 
-        {/* Logo */}
+        
         <Link to="/" className="text-xl font-semibold text-white">
           Gig<span className="text-indigo-500">Flow</span>
         </Link>
 
-        {/* Center Nav Links */}
+        
         <div
           className={`absolute md:static top-16 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent
           ${open ? "block" : "hidden"} md:flex`}
@@ -49,7 +49,7 @@ export default function Navbar() {
               </Link>
             </li>
 
-            {/* Mobile Logout */}
+            
             <li className="md:hidden mt-2">
               <button
                 onClick={handleLogout}
@@ -61,9 +61,9 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* Right Section */}
+        
         <div className="flex items-center space-x-3">
-          {/* Desktop Logout */}
+          
           <button
             onClick={handleLogout}
             className="hidden md:inline-block text-sm cursor-pointer font-medium text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
@@ -71,7 +71,7 @@ export default function Navbar() {
             Logout
           </button>
 
-          {/* Mobile Menu Button */}
+          
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden text-gray-400 hover:bg-gray-800 rounded-lg p-2"

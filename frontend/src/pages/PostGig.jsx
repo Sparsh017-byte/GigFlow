@@ -26,7 +26,7 @@ export default function PostGig() {
         
         
 
-        {/* Card */}
+        
         <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 sm:p-8">
             
@@ -36,7 +36,7 @@ export default function PostGig() {
 
             <form onSubmit={submitHandler} className="space-y-4">
               
-              {/* Title */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Gig Title
@@ -53,7 +53,7 @@ export default function PostGig() {
                 />
               </div>
 
-              {/* Description */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Description
@@ -70,7 +70,7 @@ export default function PostGig() {
                 />
               </div>
 
-              {/* Budget */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Budget (₹)
@@ -87,7 +87,7 @@ export default function PostGig() {
                 />
               </div>
 
-              {/* Button */}
+              
               <button
                 type="submit"
                 className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

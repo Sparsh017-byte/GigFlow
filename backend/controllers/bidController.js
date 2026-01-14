@@ -32,10 +32,10 @@ export const hireBid = async (req, res) => {
       return res.status(400).json({ message: "Gig already assigned" });
     }
 
-    // 1️⃣ Hire selected bid
+
     await Bid.findByIdAndUpdate(bid._id, { status: "hired" });
 
-    // 2️⃣ Reject ONLY bids of SAME gig
+
     await Bid.updateMany(
       {
         gigId: bid.gigId,
@@ -44,11 +44,11 @@ export const hireBid = async (req, res) => {
       { status: "rejected" }
     );
 
-    // 3️⃣ Assign gig
+
     gig.status = "assigned";
     await gig.save();
 
-    // 4️⃣ Notify freelancer
+
     getIO()
       .to(bid.freelancerId.toString())
       .emit("hired", { gigTitle: gig.title });

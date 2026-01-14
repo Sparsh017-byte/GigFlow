@@ -61,26 +61,26 @@ export default function Dashboard() {
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="px-6 pt-32 mx-auto max-w-5xl">
 
-        {/* Title */}
+        
         <h1 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
           Dashboard
         </h1>
 
-        {/* Loading */}
+        
         {loading && (
           <div className="text-center text-gray-500 dark:text-gray-400">
             Loading bids...
           </div>
         )}
 
-        {/* No bids */}
+        
         {!loading && bids.length === 0 && (
           <div className="text-center bg-white dark:bg-gray-800 p-6 rounded-lg shadow text-gray-500 dark:text-gray-400">
             No bids yet
           </div>
         )}
 
-        {/* Bids */}
+        
         <div className="space-y-6">
           {bids.map(bid => (
             <div

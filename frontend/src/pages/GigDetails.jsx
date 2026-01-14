@@ -12,7 +12,7 @@ export default function GigDetails() {
   const [message, setMessage] = useState("");
   const [price, setPrice] = useState("");
 
-  // Fetch gig details
+  
   useEffect(() => {
     const fetchGig = async () => {
       try {
@@ -26,7 +26,7 @@ export default function GigDetails() {
     fetchGig();
   }, [id]);
 
-  // Fetch bids
+  
   useEffect(() => {
     const fetchBids = async () => {
       try {
@@ -46,7 +46,7 @@ export default function GigDetails() {
       alert("Bid placed successfully!");
       setMessage("");
       setPrice("");
-      // Refresh bids
+      
       const { data } = await api.get(`/bids/${id}`);
       setBids(data);
     } catch (err) {
@@ -59,7 +59,7 @@ export default function GigDetails() {
     try {
       await api.patch(`/bids/${bidId}/hire`);
       alert("Freelancer hired successfully!");
-      // Update bids locally
+      
       setBids(bids.map(b => b._id === bidId ? { ...b, status: "hired" } : { ...b, status: "rejected" }));
     } catch (err) {
       alert("Failed to hire freelancer");
@@ -72,14 +72,14 @@ export default function GigDetails() {
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="px-6 pt-32 mx-auto max-w-5xl space-y-8">
 
-        {/* Gig Details */}
+        
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{gig.title}</h1>
           <p className="mt-2 text-gray-700 dark:text-gray-300">{gig.description}</p>
           <p className="mt-2 font-bold text-indigo-600 dark:text-indigo-400">Budget: ₹{gig.budget}</p>
         </div>
 
-        {/* Place Bid Form (only for freelancers, not gig owner) */}
+        
         {user && user._id !== gig.ownerId && (
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Place a Bid</h2>
@@ -105,7 +105,7 @@ export default function GigDetails() {
           </div>
         )}
 
-        {/* Bids List (for owner only) */}
+        
         {user && user._id === gig.ownerId && (
           <div className="space-y-6">
             <h2 className="text-xl font-semibold">Bids for this Gig</h2>

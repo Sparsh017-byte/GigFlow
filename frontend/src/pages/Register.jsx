@@ -26,7 +26,7 @@ export default function Register() {
     <section className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen">
         
-        {/* Logo */}
+        
         <div
           
           className="flex items-center mb-6 text-4xl font-semibold text-gray-900 dark:text-white"
@@ -34,7 +34,7 @@ export default function Register() {
           <span className="text-indigo-500 font-bold mr-1">Gig</span>Flow
         </div>
 
-        {/* Card */}
+        
         <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 sm:p-8">
             
@@ -44,7 +44,7 @@ export default function Register() {
 
             <form onSubmit={submitHandler} className="space-y-4">
 
-              {/* Name */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   UserName
@@ -61,7 +61,7 @@ export default function Register() {
                 />
               </div>
 
-              {/* Email */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Email
@@ -78,7 +78,7 @@ export default function Register() {
                 />
               </div>
 
-              {/* Password */}
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Password
@@ -95,7 +95,7 @@ export default function Register() {
                 />
               </div>
 
-              {/* Button */}
+              
               <button
                 type="submit"
                 className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
