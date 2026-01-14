@@ -32,3 +32,19 @@ export const login = async (req, res) => {
   generateToken(res, user._id);
   res.json(user);
 };
+
+export const logout = async (req, res) => {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0), // immediately expires cookie
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
+};
+
+export const getMe = async (req, res) => {
+  
+  res.status(200).json(req.user);
+  
+};
+

@@ -17,39 +17,46 @@ export const getBidsByGig = async (req, res) => {
 };
 
 export const hireBid = async (req, res) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
-    const bid = await Bid.findById(req.params.bidId).session(session);
-    const gig = await Gig.findById(bid.gigId).session(session);
+    const bid = await Bid.findById(req.params.bidId);
+    if (!bid) {
+      return res.status(404).json({ message: "Bid not found" });
+    }
 
-    if (gig.status === "assigned")
-      throw new Error("Gig already assigned");
+    const gig = await Gig.findById(bid.gigId);
+    if (!gig) {
+      return res.status(404).json({ message: "Gig not found" });
+    }
 
+    if (gig.status === "assigned") {
+      return res.status(400).json({ message: "Gig already assigned" });
+    }
+
+    // 1️⃣ Hire selected bid
+    await Bid.findByIdAndUpdate(bid._id, { status: "hired" });
+
+    // 2️⃣ Reject ONLY bids of SAME gig
     await Bid.updateMany(
-      { gigId: gig._id },
-      { status: "rejected" },
-      { session }
+      {
+        gigId: bid.gigId,
+        _id: { $ne: bid._id }
+      },
+      { status: "rejected" }
     );
 
-    bid.status = "hired";
-    await bid.save({ session });
-
+    // 3️⃣ Assign gig
     gig.status = "assigned";
-    await gig.save({ session });
+    await gig.save();
 
-    await session.commitTransaction();
-
-    getIO().to(bid.freelancerId.toString())
+    // 4️⃣ Notify freelancer
+    getIO()
+      .to(bid.freelancerId.toString())
       .emit("hired", { gigTitle: gig.title });
 
     res.json({ message: "Freelancer hired successfully" });
 
   } catch (err) {
-    await session.abortTransaction();
-    res.status(400).json({ message: err.message });
-  } finally {
-    session.endSession();
+    console.error(err);
+    res.status(500).json({ message: "Failed to hire freelancer" });
   }
 };
